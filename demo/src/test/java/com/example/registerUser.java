@@ -47,5 +47,17 @@ public class registerUser {
              assertThat(responseBody).contains(validUser.firstName());
         }
            
-
+        @Test 
+        void registerUser2() {
+        User validUser = User.randomeUser();
+          
+        var response = request.post("/users/register",
+        RequestOptions.create()
+           .setHeader("Content-Type", "application/json")
+           .setData(validUser)
+            );
+             assertThat(response.status()).isEqualTo(201);
+             String responseBody = response.text();
+             assertThat(responseBody).contains(validUser.firstName());
+        }
 }
